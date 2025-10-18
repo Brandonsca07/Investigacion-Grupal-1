@@ -1,0 +1,347 @@
+[
+  {
+    "_from": "Subestaciones/S864",
+    "_to": "Subestaciones/S5",
+    "distancia_km": 0.200
+  },
+  {
+    "_from": "Subestaciones/S24",
+    "_to": "Subestaciones/S40",
+    "distancia_km": 1.042
+  },
+  {
+    "_from": "Subestaciones/S0",
+    "_to": "Subestaciones/S28",
+    "distancia_km": 1.147
+  },
+  {
+    "_from": "Subestaciones/S64",
+    "_to": "Subestaciones/S44",
+    "distancia_km": 1.482
+  },
+  {
+    "_from": "Subestaciones/S865",
+    "_to": "Subestaciones/S38",
+    "distancia_km": 1.547
+  },
+  {
+    "_from": "Subestaciones/S52",
+    "_to": "Subestaciones/S865",
+    "distancia_km": 1.798
+  },
+  {
+    "_from": "Subestaciones/S0",
+    "_to": "Subestaciones/S61",
+    "distancia_km": 1.853
+  },
+  {
+    "_from": "Subestaciones/S11",
+    "_to": "Subestaciones/S866",
+    "distancia_km": 1.860
+  },
+  {
+    "_from": "Subestaciones/S866",
+    "_to": "Subestaciones/S867",
+    "distancia_km": 1.917
+  },
+  {
+    "_from": "Subestaciones/S5",
+    "_to": "Subestaciones/S34",
+    "distancia_km": 2.084
+  },
+  {
+    "_from": "Subestaciones/S52",
+    "_to": "Subestaciones/S64",
+    "distancia_km": 2.140
+  },
+  {
+    "_from": "Subestaciones/S11",
+    "_to": "Subestaciones/S63",
+    "distancia_km": 2.173
+  },
+  {
+    "_from": "Subestaciones/S44",
+    "_to": "Subestaciones/S13",
+    "distancia_km": 2.244
+  },
+  {
+    "_from": "Subestaciones/S49",
+    "_to": "Subestaciones/S17",
+    "distancia_km": 2.439
+  },
+  {
+    "_from": "Subestaciones/S48",
+    "_to": "Subestaciones/S24",
+    "distancia_km": 2.452
+  },
+  {
+    "_from": "Subestaciones/S867",
+    "_to": "Subestaciones/S41",
+    "distancia_km": 2.470
+  },
+  {
+    "_from": "Subestaciones/S61",
+    "_to": "Subestaciones/S16",
+    "distancia_km": 2.581
+  },
+  {
+    "_from": "Subestaciones/S28",
+    "_to": "Subestaciones/S13",
+    "distancia_km": 2.808
+  },
+  {
+    "_from": "Subestaciones/S44",
+    "_to": "Subestaciones/S22",
+    "distancia_km": 2.919
+  },
+  {
+    "_from": "Subestaciones/S37",
+    "_to": "Subestaciones/S63",
+    "distancia_km": 3.100
+  },
+  {
+    "_from": "Subestaciones/S22",
+    "_to": "Subestaciones/S43",
+    "distancia_km": 3.109
+  },
+  {
+    "_from": "Subestaciones/S17",
+    "_to": "Subestaciones/S869",
+    "distancia_km": 3.173
+  },
+  {
+    "_from": "Subestaciones/S8",
+    "_to": "Subestaciones/S61",
+    "distancia_km": 3.390
+  },
+  {
+    "_from": "Subestaciones/S1",
+    "_to": "Subestaciones/S6",
+    "distancia_km": 3.450
+  },
+  {
+    "_from": "Subestaciones/S41",
+    "_to": "Subestaciones/S63",
+    "distancia_km": 3.584
+  },
+  {
+    "_from": "Subestaciones/S18",
+    "_to": "Subestaciones/S47",
+    "distancia_km": 3.637
+  },
+  {
+    "_from": "Subestaciones/S43",
+    "_to": "Subestaciones/S33",
+    "distancia_km": 3.717
+  },
+  {
+    "_from": "Subestaciones/S36",
+    "_to": "Subestaciones/S52",
+    "distancia_km": 4.038
+  },
+  {
+    "_from": "Subestaciones/S19",
+    "_to": "Subestaciones/S49",
+    "distancia_km": 4.256
+  },
+  {
+    "_from": "Subestaciones/S47",
+    "_to": "Subestaciones/S29",
+    "distancia_km": 4.391
+  },
+  {
+    "_from": "Subestaciones/S17",
+    "_to": "Subestaciones/S26",
+    "distancia_km": 4.744
+  },
+  {
+    "_from": "Subestaciones/S16",
+    "_to": "Subestaciones/S55",
+    "distancia_km": 4.872
+  },
+  {
+    "_from": "Subestaciones/S29",
+    "_to": "Subestaciones/S18",
+    "distancia_km": 5.278
+  },
+  {
+    "_from": "Subestaciones/S3",
+    "_to": "Subestaciones/S15",
+    "distancia_km": 5.285
+  },
+  {
+    "_from": "Subestaciones/S34",
+    "_to": "Subestaciones/S31",
+    "distancia_km": 5.364
+  },
+  {
+    "_from": "Subestaciones/S42",
+    "_to": "Subestaciones/S32",
+    "distancia_km": 5.698
+  },
+  {
+    "_from": "Subestaciones/S6",
+    "_to": "Subestaciones/S35",
+    "distancia_km": 6.393
+  },
+  {
+    "_from": "Subestaciones/S36",
+    "_to": "Subestaciones/S26",
+    "distancia_km": 6.610
+  },
+  {
+    "_from": "Subestaciones/S35",
+    "_to": "Subestaciones/S1",
+    "distancia_km": 6.796
+  },
+  {
+    "_from": "Subestaciones/S42",
+    "_to": "Subestaciones/S27",
+    "distancia_km": 7.036
+  },
+  {
+    "_from": "Subestaciones/S27",
+    "_to": "Subestaciones/S25",
+    "distancia_km": 7.064
+  },
+  {
+    "_from": "Subestaciones/S32",
+    "_to": "Subestaciones/S25",
+    "distancia_km": 7.336
+  },
+  {
+    "_from": "Subestaciones/S8",
+    "_to": "Subestaciones/S37",
+    "distancia_km": 7.505
+  },
+  {
+    "_from": "Subestaciones/S4",
+    "_to": "Subestaciones/S55",
+    "distancia_km": 7.579
+  },
+  {
+    "_from": "Subestaciones/S4",
+    "_to": "Subestaciones/S21",
+    "distancia_km": 7.855
+  },
+  {
+    "_from": "Subestaciones/S15",
+    "_to": "Subestaciones/S10",
+    "distancia_km": 8.280
+  },
+  {
+    "_from": "Subestaciones/S26",
+    "_to": "Subestaciones/S50",
+    "distancia_km": 9.161
+  },
+  {
+    "_from": "Subestaciones/S47",
+    "_to": "Subestaciones/S48",
+    "distancia_km": 9.208
+  },
+  {
+    "_from": "Subestaciones/S2",
+    "_to": "Subestaciones/S54",
+    "distancia_km": 9.338
+  },
+  {
+    "_from": "Subestaciones/S10",
+    "_to": "Subestaciones/S20",
+    "distancia_km": 9.732
+  },
+  {
+    "_from": "Subestaciones/S21",
+    "_to": "Subestaciones/S33",
+    "distancia_km": 10.078
+  },
+  {
+    "_from": "Subestaciones/S8",
+    "_to": "Subestaciones/S12",
+    "distancia_km": 10.375
+  },
+  {
+    "_from": "Subestaciones/S18",
+    "_to": "Subestaciones/S24",
+    "distancia_km": 10.836
+  },
+  {
+    "_from": "Subestaciones/S1",
+    "_to": "Subestaciones/S59",
+    "distancia_km": 11.400
+  },
+  {
+    "_from": "Subestaciones/S53",
+    "_to": "Subestaciones/S27",
+    "distancia_km": 11.520
+  },
+  {
+    "_from": "Subestaciones/S20",
+    "_to": "Subestaciones/S46",
+    "distancia_km": 12.045
+  },
+  {
+    "_from": "Subestaciones/S12",
+    "_to": "Subestaciones/S23",
+    "distancia_km": 12.224
+  },
+  {
+    "_from": "Subestaciones/S62",
+    "_to": "Subestaciones/S57",
+    "distancia_km": 12.726
+  },
+  {
+    "_from": "Subestaciones/S59",
+    "_to": "Subestaciones/S7",
+    "distancia_km": 12.909
+  },
+  {
+    "_from": "Subestaciones/S9",
+    "_to": "Subestaciones/S863",
+    "distancia_km": 16.302
+  },
+  {
+    "_from": "Subestaciones/S9",
+    "_to": "Subestaciones/S31",
+    "distancia_km": 16.304
+  },
+  {
+    "_from": "Subestaciones/S62",
+    "_to": "Subestaciones/S14",
+    "distancia_km": 20.048
+  },
+  {
+    "_from": "Subestaciones/S23",
+    "_to": "Subestaciones/S14",
+    "distancia_km": 21.201
+  },
+  {
+    "_from": "Subestaciones/S46",
+    "_to": "Subestaciones/S39",
+    "distancia_km": 35.968
+  },
+  {
+    "_from": "Subestaciones/S2",
+    "_to": "Subestaciones/S45",
+    "distancia_km": 43.633
+  },
+  {
+    "_from": "Subestaciones/S56",
+    "_to": "Subestaciones/S50",
+    "distancia_km": 43.982
+  },
+  {
+    "_from": "Subestaciones/S58",
+    "_to": "Subestaciones/S60",
+    "distancia_km": 44.674
+  },
+  {
+    "_from": "Subestaciones/S45",
+    "_to": "Subestaciones/S56",
+    "distancia_km": 47.349
+  },
+  {
+    "_from": "Subestaciones/S60",
+    "_to": "Subestaciones/S39",
+    "distancia_km": 54.933
+  }
+]
