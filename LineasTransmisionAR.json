@@ -343,5 +343,9 @@
     "_from": "Subestaciones/S60",
     "_to": "Subestaciones/S39",
     "distancia_km": 54.933
+  }, 
+  {"_from": "Subestaciones/S53",
+    "_to": "Subestaciones/S15",
+    "distancia_km": 192.284
   }
 ]
