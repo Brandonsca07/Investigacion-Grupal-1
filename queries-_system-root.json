@@ -1,1 +1,27 @@
 [{"value":"","parameter":{},"name":"Codigo ArangoDb","modified_at":1760726135363}]
+ FOR linea IN LineasDeTransmicion
+  LET partes = SPLIT(linea.Circuito, "-")
+  LET origenNombre = TRIM(partes[0])
+  LET destinoNombre = TRIM(partes[1])
+  
+  LET origen = FIRST(
+    FOR s IN Subestacion
+      FILTER s.Subestacio == origenNombre
+      RETURN s
+  )
+  
+  LET destino = FIRST(
+    FOR s IN Subestacion
+      FILTER s.Subestacio == destinoNombre
+      RETURN s
+  )
+  
+  FILTER origen != NULL AND destino != NULL
+  
+  INSERT {
+    _from: origen._id,
+    _to: destino._id,
+    Voltaje: linea.Voltaje,
+    Circuito: linea.Circuito,
+    Shape__Length: linea.Shape__Length
+  } INTO Conecta
