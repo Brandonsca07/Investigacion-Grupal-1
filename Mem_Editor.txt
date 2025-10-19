@@ -1,0 +1,70 @@
+
+/* 
+#Digite en PowerShell para conocer el Container ID 
+docker ps
+
+#Mi Container ID:b3712b100de8
+#Cargamos los csv en el contenedor digitando lo siguiente en powershell
+docker cp "C:\Users\Mauricio Serrano\OneDrive - Universidad de Costa Rica\Github\Investigacion-Grupal-1\Agencias.csv" b3712b100de8:/var/lib/memgraph/
+docker cp "C:\Users\Mauricio Serrano\OneDrive - Universidad de Costa Rica\Github\Investigacion-Grupal-1\LineasDeTransmision.csv" b3712b100de8:/var/lib/memgraph/
+docker cp "C:\Users\Mauricio Serrano\OneDrive - Universidad de Costa Rica\Github\Investigacion-Grupal-1\Subestaciones.csv" b3712b100de8:/var/lib/memgraph/
+
+#ingresamos al entorno de Memgraph
+docker exec -it b3712b100de8 bash
+*/
+
+/*Cargamos las bases de datos en Cypher editor*/
+/*Creamos nodos con Agencias y Subestaciones*/
+LOAD CSV FROM "/var/lib/memgraph/Agencias.csv" WITH HEADER AS row
+CREATE (:Agencia {
+    id: toInteger(row.OBJECTID_1),
+    nombre: row.Nombre,
+    direccion: row.Direccion,
+    telefono: row.Telefono,
+    fax: row.Fax,
+    horario: row.Horario,
+    x: toFloat(row.x),
+    y: toFloat(row.y)
+});
+
+LOAD CSV FROM "/var/lib/memgraph/Subestaciones.csv" WITH HEADER AS row
+CREATE (:Subestacion {
+    id: toInteger(row.OBJECTID),
+    nombre: row.Subestacio,
+    provincia: row.Provincia,
+    canton: row.Canton,
+    distrito: row.Distrito,
+    x: toFloat(row.PuntoX),
+    y: toFloat(row.PuntoY)
+});
+
+/*Creamos las relaciones usando el CSV LineasDeTransmision*/
+/*Esto crea relaciones (:Subestacion)-[:LINEA]->(:Subestacion)  */
+LOAD CSV FROM "/var/lib/memgraph/LineasDeTransmision.csv" WITH HEADER AS row
+MATCH (a:Subestacion {nombre: SPLIT(row.Circuito, "-")[0]}),
+      (b:Subestacion {nombre: SPLIT(row.Circuito, "-")[1]})
+CREATE (a)-[:LINEA {
+    voltaje: toInteger(row.Voltaje),
+    longitud: toFloat(row.Shape__Length),
+    peso: Round(toFloat(row.Shape__Length) * 10) / 10 /1000  // <-- Peso con un decimal, expresado en KM
+}]->(b);
+
+
+/*Visualizar el grafo */
+MATCH (n)-[r:LINEA]->(m)
+RETURN n, r, m;
+
+/*Visualizar el grafo version2 */
+// Asegurar propiedad "name" para mostrar en el grafo
+MATCH (n)
+SET n.name = coalesce(n.nombre, n.Subestacio, n.Nombre);
+
+MATCH (n)-[r:LINEA]->(m)
+RETURN n, r, m;
+
+
+/*Para borrar los nodos y evitar que aparezcan repetidos*/
+/*MATCH (n)
+DETACH DELETE n; */
+
+
