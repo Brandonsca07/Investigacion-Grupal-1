@@ -75,8 +75,8 @@ Define(LONGITUDE_FIELD, "lng")
 }
 
 // Prioridad: Muestra el peso en Km si la propiedad existe
-@EdgeStyle HasProperty(edge, "peso") {
-  label: Format("{} Km", AsText(Property(edge, "peso")))
+@EdgeStyle HasProperty(edge, "peso") { 
+  label: Format("{} Km", AsText(Round(Property(edge, "peso")))) 
 }
 
 // Show edge text only if there is a small number of edges in the view
