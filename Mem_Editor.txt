@@ -49,6 +49,19 @@ CREATE (a)-[:LINEA {
     peso: Round(toFloat(row.Shape__Length) * 10) / 10 /1000  // <-- Peso con un decimal, expresado en KM
 }]->(b);
 
+
+//Numero de conexiones que tiene cada estacion
+MATCH (s:Subestacion)
+OPTIONAL MATCH (s)-[:LINEA]->()
+WITH s, count(*) AS out_deg
+OPTIONAL MATCH (s)<-[:LINEA]-()
+WITH s, out_deg, count(*) AS in_deg
+RETURN s.nombre AS subestacion,
+       out_deg  AS salientes,
+       in_deg   AS entrantes,
+       (out_deg + in_deg) AS total
+ORDER BY total DESC, subestacion;
+
 // Distancia mas corta entre las Subestaciones
 MATCH (a:Subestacion)
 WITH a, point({x:a.x, y:a.y}) AS a_loc
@@ -63,12 +76,7 @@ RETURN a.nombre AS origen,
        round(nearest.km * 1) / 1.0 AS km   
 ORDER BY origen;
 
-// Numero de conexiones que tienen las subestaciones
-MATCH (s:Subestacion)-[:LINEA]->()
-WITH s, count(*) AS NumeroConexiones
-RETURN s.nombre AS subestacion, NumeroConexiones
-ORDER BY NumeroConexiones DESC
-LIMIT 20;
+
 
 /*Visualizar el grafo */
 MATCH (n)-[r:LINEA]->(m)
