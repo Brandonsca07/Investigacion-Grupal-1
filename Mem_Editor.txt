@@ -76,7 +76,12 @@ RETURN a.nombre AS origen,
        round(nearest.km * 1) / 1.0 AS km   
 ORDER BY origen;
 
-
+// Distancia promedio por estacion:
+MATCH (s:Subestacion)-[r:LINEA]-()
+WITH s, avg(r.peso) AS avg_km
+RETURN s.nombre AS subestacion,
+       round(avg_km*1)/1.0 AS km_promedio
+ORDER BY km_promedio DESC, subestacion;
 
 /*Visualizar el grafo */
 MATCH (n)-[r:LINEA]->(m)
