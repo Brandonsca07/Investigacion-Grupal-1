@@ -39,8 +39,8 @@ Define(JoinLabels, Function(labels, Join(Sort(labels), ":")))
 }
 
 // Overwrite node text with the property "name" if defined
-@NodeStyle HasProperty(node, "name") {
-  label: AsText(Property(node, "name"))
+@NodeStyle HasProperty(node, "nombre") {
+  label: AsText(Property(node, "nombre"))
 }
 
 // Feel free to uncomment the lines below to set up a custom style for the specific node label
