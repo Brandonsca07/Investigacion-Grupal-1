@@ -49,16 +49,28 @@ CREATE (a)-[:LINEA {
     peso: Round(toFloat(row.Shape__Length) * 10) / 10 /1000  // <-- Peso con un decimal, expresado en KM
 }]->(b);
 
+// Distancia mas corta entre las Subestaciones
+MATCH (a:Subestacion)
+WITH a, point({x:a.x, y:a.y}) AS a_loc
+MATCH (b:Subestacion)
+WITH a, a_loc, b, point({x:b.x, y:b.y}) AS b_loc
+WHERE a != b
+WITH a, b, point.distance(a_loc, b_loc) / 1000.0 AS km
+ORDER BY a.nombre, km
+WITH a, collect({b:b, km:km})[0] AS nearest
+RETURN a.nombre AS origen,
+       nearest.b.nombre AS mas_cercana,
+       round(nearest.km * 1) / 1.0 AS km   
+ORDER BY origen;
+
+// Numero de conexiones que tienen las subestaciones
+MATCH (s:Subestacion)-[:LINEA]->()
+WITH s, count(*) AS NumeroConexiones
+RETURN s.nombre AS subestacion, NumeroConexiones
+ORDER BY NumeroConexiones DESC
+LIMIT 20;
 
 /*Visualizar el grafo */
-MATCH (n)-[r:LINEA]->(m)
-RETURN n, r, m;
-
-/*Visualizar el grafo version2 */
-// Asegurar propiedad "name" para mostrar en el grafo
-MATCH (n)
-SET n.name = coalesce(n.nombre, n.Subestacio, n.Nombre);
-
 MATCH (n)-[r:LINEA]->(m)
 RETURN n, r, m;
 
