@@ -62,8 +62,19 @@ RETURN s.nombre AS subestacion,
        (out_deg + in_deg) AS total
 ORDER BY total DESC, subestacion;
 
-// Distancia mas corta entre las Subestaciones
-MATCH (a:Subestacion)
+// Subestacion mas conectada
+MATCH (s:Subestacion)
+OPTIONAL MATCH (s)-[:LINEA]->()
+WITH s, count(*) AS out_deg
+OPTIONAL MATCH (s)<-[:LINEA]-()
+WITH s, out_deg, count(*) AS in_deg
+RETURN s.nombre AS subestacion,
+       out_deg + in_deg AS total
+ORDER BY total DESC
+LIMIT 1;
+
+// Distancia mas corta entre las Subestaciones 
+MATCH (a:Subestacion) <-- este codigo ahora da errores en la salida REVISARLO
 WITH a, point({x:a.x, y:a.y}) AS a_loc
 MATCH (b:Subestacion)
 WITH a, a_loc, b, point({x:b.x, y:b.y}) AS b_loc
