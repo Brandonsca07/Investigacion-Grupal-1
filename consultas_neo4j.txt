@@ -50,8 +50,8 @@ CREATE (:Subestacion {
     provincia: row.Provincia,
     canton: row.Canton,
     distrito: row.Distrito,
-    x: toFloat(row.X),    // ← MAYÚSCULA
-    y: toFloat(row.Y)     // ← MAYÚSCULA
+    x: toFloat(row.X),    
+    y: toFloat(row.Y)     
 });
 
 LOAD CSV WITH HEADERS FROM 'file:///LineasDeTransmision.csv' AS row
