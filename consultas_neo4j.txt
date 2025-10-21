@@ -1,0 +1,64 @@
+// Consulta 4, distancia más cercana entre dos subestaciones
+MATCH (a:Subestacion)
+WHERE a.x IS NOT NULL AND a.y IS NOT NULL
+WITH a, point({x: a.x, y: a.y}) AS a_loc
+
+MATCH (b:Subestacion)
+WHERE b.x IS NOT NULL AND b.y IS NOT NULL
+WITH a, a_loc, b, point({x: b.x, y: b.y}) AS b_loc
+WHERE a <> b
+
+WITH a, b, point.distance(a_loc, b_loc)/1000.0 AS km
+ORDER BY a.nombre, km
+
+WITH a, collect({nombre: b.nombre, km: km})[0] AS mas_cercana
+
+RETURN 
+  a.nombre AS origen,
+  mas_cercana.nombre AS mas_cercana,
+  ROUND(mas_cercana.km * 10) / 10.0 AS distancia_km
+ORDER BY origen;
+
+// Consulta 3, distancia promedio
+MATCH (s:Subestacion)-[r:LINEA]-()
+WITH s, avg(r.peso) AS avg_km
+RETURN 
+  s.nombre AS subestacion,
+  ROUND(avg_km * 1) / 1.0 AS km_promedio
+ORDER BY km_promedio DESC, subestacion;
+
+// CONSULTA 2, subestacion con mayor conexiones
+MATCH (s:Subestacion)--()
+RETURN s.nombre AS subestacion, COUNT(*) AS conexiones
+ORDER BY conexiones DESC
+LIMIT 1;
+
+// Consulta 1 cuantas conexiones tiene cada subestacion
+MATCH (s:Subestacion)--()
+RETURN s.nombre AS subestacion, COUNT(*) AS cantidad_conexiones
+ORDER BY cantidad_conexiones DESC;
+
+// Visualizo el grafo
+MATCH p = (:Subestacion)-[:LINEA]-(:Subestacion)
+RETURN p;
+
+// cargamos los datos CSV
+LOAD CSV WITH HEADERS FROM 'file:///Subestaciones.csv' AS row
+CREATE (:Subestacion {
+    id: toInteger(row.OBJECTID),
+    nombre: row.Subestacio,
+    provincia: row.Provincia,
+    canton: row.Canton,
+    distrito: row.Distrito,
+    x: toFloat(row.X),    // ← MAYÚSCULA
+    y: toFloat(row.Y)     // ← MAYÚSCULA
+});
+
+LOAD CSV WITH HEADERS FROM 'file:///LineasDeTransmision.csv' AS row
+MATCH (a:Subestacion {nombre: SPLIT(row.Circuito, "-")[0]}),
+      (b:Subestacion {nombre: SPLIT(row.Circuito, "-")[1]})
+CREATE (a)-[:LINEA {
+    voltaje: toInteger(row.Voltaje),
+    longitud: toFloat(row.Shape__Length),
+    peso: Round(toFloat(row.Shape__Length) * 10) / 10 /1000  // 
+}]->(b);
