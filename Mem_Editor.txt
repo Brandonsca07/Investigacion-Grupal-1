@@ -14,7 +14,7 @@ docker exec -it b3712b100de8 bash
 */
 
 /*Cargamos las bases de datos en Cypher editor*/
-/*Creamos nodos con Agencias y Subestaciones*/
+/*Creamos nodos Subestaciones*/
 LOAD CSV FROM "/var/lib/memgraph/Agencias.csv" WITH HEADER AS row
 CREATE (:Agencia {
     id: toInteger(row.OBJECTID_1),
@@ -73,19 +73,18 @@ RETURN s.nombre AS subestacion,
 ORDER BY total DESC
 LIMIT 1;
 
-// Distancia mas corta entre las Subestaciones 
-MATCH (a:Subestacion) <-- este codigo ahora da errores en la salida REVISARLO
-WITH a, point({x:a.x, y:a.y}) AS a_loc
-MATCH (b:Subestacion)
-WITH a, a_loc, b, point({x:b.x, y:b.y}) AS b_loc
-WHERE a != b
-WITH a, b, point.distance(a_loc, b_loc) / 1000.0 AS km
-ORDER BY a.nombre, km
-WITH a, collect({b:b, km:km})[0] AS nearest
-RETURN a.nombre AS origen,
-       nearest.b.nombre AS mas_cercana,
-       round(nearest.km * 1) / 1.0 AS km   
-ORDER BY origen;
+// Distancia mas corta entre las Subestaciones <---Corregido
+MATCH (a:Subestacion)-[l:LINEA]-(b:Subestacion)
+WITH a, b, l
+ORDER BY a.nombre, l.peso ASC
+WITH a, collect({
+  vecino: b.nombre,
+  km_red: toInteger(round(l.peso))
+})[0] AS mejor
+RETURN a.nombre AS estacion,
+       mejor.vecino AS vecino_mas_cercano,
+       mejor.km_red AS distancia_km
+ORDER BY distancia_km ASC;
 
 // Distancia promedio por estacion:
 MATCH (s:Subestacion)-[r:LINEA]-()
